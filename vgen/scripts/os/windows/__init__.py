@@ -1,2 +1,2 @@
-from .apache import *
-from .iis import *
+from .apache import Apache
+from .iis import Iis

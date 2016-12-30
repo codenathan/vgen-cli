@@ -10,5 +10,5 @@ WEB_SERVER_VERSION = 2.2  # 2.2 | 2.4
 
 DISABLE_EXT = '.bak'  # when host disabled if PATH_DISABLE is NONE all files will be suffixed with this ext
 PATH_DISABLE = None  # Path disable to .conf files
-DEV_ENVIRONMENT = None  # None | mamp | xampp | homestead
+DEV_ENVIRONMENT = 'mamp'  # None | mamp | xampp | homestead
 ARCHIVE_DOCS = None  # path to move archived sites to archive folder
