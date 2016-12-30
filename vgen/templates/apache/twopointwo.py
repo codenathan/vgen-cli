@@ -1,4 +1,4 @@
-from vgen.templates.template import *
+from vgen.templates.template import Template
 
 
 class TwoPointTwo(Template):
@@ -7,8 +7,6 @@ class TwoPointTwo(Template):
         self.template = """
                     <VirtualHost *:80>
                         ServerName {domain_name}
-                        ServerAdmin {admin}
-
                         DocumentRoot {document_path}
 
                         <Directory "{public_directory}">
@@ -17,8 +15,9 @@ class TwoPointTwo(Template):
                         </Directory>
 
                         LogLevel warn
-                        ErrorLog ${APACHE_LOG_DIR}/{domain_slug}_error.log
-                        CustomLog ${APACHE_LOG_DIR}/{domain_slug}_access.log combined
+                        ErrorLog ${{APACHE_LOG_DIR}}/{domain_slug}_error.log
+                        CustomLog ${{APACHE_LOG_DIR}}/{domain_slug}_access.log combined
                     </VirtualHost>
-                    """.format(domain_name=host, document_path=doc_path, public_directory=public_dir, domain_slug=slug)
+                    """.format(domain_name=host, document_path=doc_path,
+                               public_directory=public_dir, domain_slug=slug)
         return self.template

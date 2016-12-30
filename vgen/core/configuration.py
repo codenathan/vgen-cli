@@ -14,7 +14,7 @@ class Configuration(object):
         except AttributeError:
             raise ImproperlyConfigured("'%s' is not configured please configure config.py ." % attr)
 
-    def get_config(self, attr):
+    def get(self, attr):
         return self.config_exists(attr)
 
     @staticmethod

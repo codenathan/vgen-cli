@@ -1,7 +1,4 @@
-class FrameworkCommand:
-
-    def __init__(self):
-        pass
+class FrameworkCommands(object):
 
     def get_code(self):
         raise NotImplementedError('You must specify on how we must retrieve the code')
