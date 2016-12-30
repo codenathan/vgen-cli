@@ -1,4 +1,4 @@
-from vgen.scripts.server_commands import *
+from vgen.core import ServerCommands
 
 
 class Mac(ServerCommands):

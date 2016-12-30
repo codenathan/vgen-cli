@@ -26,7 +26,7 @@ class Base(object):
 
         if dev_env is not None:
             self.server = importlib.import_module('vgen.scripts.development.'+dev_env+'.'+operating_system)
+            self.server = getattr(self.server, operating_system.title())
         else:
             self.server = importlib.import_module('vgen.scripts.os.' + operating_system)
-
-        self.server = getattr(self.server, operating_system.title())
+            self.server = getattr(self.server, web_server.title())
