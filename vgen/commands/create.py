@@ -20,6 +20,8 @@ class Create(Base):
             self.doc_path = path.join(self.config.get('DOCUMENT_ROOT'), self.slug)
             self.public_path = path.join(self.doc_path, 'public')
             self.template = getattr(template_mapping, self.web_server)[self.web_server_version](self.__dict__)
+            self.package = None
+            self.check_if_package()
 
     def run(self):
         make_directories(self.doc_path, self.public_path)
@@ -49,8 +51,12 @@ class Create(Base):
             raise AttributeError('The hostname provided %r is not valid' % hostname)
 
     def update_host_files(self):
+        ip = '127.0.0.1'
         if self.dev_env is not None:
-            self.host_files.update('127.0.0.1', self.host)
+            config_ip = self.config.get('IP_ADDRESS')
+            if config_ip is not '*':
+                ip = config_ip
+        self.host_files.update(ip, self.host)
 
     def update_permissions(self):
 
@@ -60,5 +66,11 @@ class Create(Base):
             import getpass
             getpass.getuser()
             user = getpass
+        else:
+            return False
 
         change_directory_owner_recursively(self.doc_path, user)
+
+    def check_if_package(self):
+        print self.options
+        exit()
