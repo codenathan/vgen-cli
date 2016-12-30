@@ -1,1 +1,1 @@
-from .mac import Mac
+from .mac import *

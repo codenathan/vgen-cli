@@ -27,6 +27,7 @@ class Create(Base):
 
         self.filename = self.create_config_file(template_string)
         print 'Created Vhost file for  %s : %r' % (self.host, self.filename)
+        self.server.restart_server()
 
     def create_config_file(self, data):
         path_enabled = self.config.get('PATH_ENABLED')

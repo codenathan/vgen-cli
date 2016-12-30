@@ -11,4 +11,5 @@ class Template(object):
         raise NotImplementedError('You must implement a template string for every template')
 
     def render_template(self):
+        # TODO implement ways of automatically indenting template strings
         return self.get_template().strip()

@@ -1,5 +1,6 @@
 from vgen.core import Configuration
 from vgen.core import defaults
+from vgen.core.expection import *
 
 import importlib
 
@@ -20,13 +21,23 @@ class Base(object):
         raise NotImplementedError('You must implement the run() method yourself!')
 
     def set_server(self):
+
         dev_env = self.config.get('DEV_ENVIRONMENT')
         web_server = self.config.get('WEB_SERVER')
         operating_system = self.config.get('OPERATING_SYSTEM')
 
-        if dev_env is not None:
-            self.server = importlib.import_module('vgen.scripts.development.'+dev_env+'.'+operating_system)
-            self.server = getattr(self.server, operating_system.title())
-        else:
-            self.server = importlib.import_module('vgen.scripts.os.' + operating_system)
-            self.server = getattr(self.server, web_server.title())
+        try:
+
+            if dev_env is not None:
+                server = 'vgen.scripts.development.' + dev_env + '.' + operating_system
+            else:
+                server = 'vgen.scripts.os.' + operating_system
+
+            module = importlib.import_module(server)
+
+            self.server = getattr(module, web_server.title())()
+
+        except:
+            raise ImproperlyConfigured('Web Server could not be determined check configuration')
+
+
