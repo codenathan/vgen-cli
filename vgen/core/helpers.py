@@ -1,5 +1,6 @@
 import unicodedata, re
-import os
+import os,ctypes,platform
+from vgen.services import hostfileupdate
 
 
 def slugify(string):
@@ -9,7 +10,23 @@ def slugify(string):
     return slug
 
 
-def mkdir(*paths):
+def make_directories(*paths):
     for path in paths:
             if not os.path.exists(path):
                 os.makedirs(path)
+
+
+def check_if_hostname_is_valid(domain):
+    return hostfileupdate.isValidHostname(domain)
+
+
+def check_if_running_as_administrator():
+    if platform.system() == 'Windows' :
+        try:
+            is_admin = os.getuid() == 0
+        except AttributeError:
+            is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
+    else:
+        is_admin = os.geteuid() == 0
+
+    return is_admin

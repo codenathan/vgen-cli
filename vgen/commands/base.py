@@ -1,4 +1,5 @@
 from vgen.core import Configuration
+from vgen.core import defaults
 
 
 class Base(object):
@@ -9,6 +10,7 @@ class Base(object):
         self.args = args
         self.kwargs = kwargs
         self.config = Configuration()
+        self.defaults = defaults
 
     def run(self):
         raise NotImplementedError('You must implement the run() method yourself!')
