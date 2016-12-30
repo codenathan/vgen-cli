@@ -18,9 +18,11 @@ class TwoPointFour(Template):
     </Directory>
 
     LogLevel warn
-    ErrorLog ${APACHE_LOG_DIR}/{domain_slug}_error.log
-    CustomLog ${APACHE_LOG_DIR}/{domain_slug}_access.log combined
+    ErrorLog {log_path}/{domain_slug}_error.log
+    CustomLog {log_path}/{domain_slug}_access.log combined
 </VirtualHost>
 """.format(domain_name=self.setup['host'], document_path=self.setup['doc_path'],
-           public_directory=self.setup['public_path'], domain_slug=self.setup['slug'])
+           public_directory=self.setup['public_path'], domain_slug=self.setup['slug'],
+           log_path=self.log_path, ip=self.ip, port=self.port
+           )
         return self.template

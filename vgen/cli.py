@@ -19,7 +19,7 @@ Options:
 
 Examples:
   vgen create stage.vgen.com
-  vgen create dev.vgen.com --p=laravel --u=vgen
+  vgen create dev.vgen.com --p=laravel --u=myusername -d
   vgen archive www.vgen.com
 
 

@@ -1,6 +1,7 @@
 from vgen.core import Configuration
 from vgen.core import defaults
 from vgen.core.expection import *
+from vgen.services import hostfileupdate
 
 import importlib
 
@@ -15,6 +16,7 @@ class Base(object):
         self.config = Configuration()
         self.defaults = defaults
         self.server = None
+        self.host_files = hostfileupdate
         self.set_server()
 
     def run(self):

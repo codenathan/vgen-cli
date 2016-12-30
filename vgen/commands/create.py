@@ -28,6 +28,8 @@ class Create(Base):
         self.filename = self.create_config_file(template_string)
         print 'Created Vhost file for  %s : %r' % (self.host, self.filename)
         self.server.restart_server()
+        self.update_host_files()
+        self.update_permissions()
 
     def create_config_file(self, data):
         path_enabled = self.config.get('PATH_ENABLED')
@@ -46,7 +48,17 @@ class Create(Base):
         if not check_if_hostname_is_valid(hostname):
             raise AttributeError('The hostname provided %r is not valid' % hostname)
 
+    def update_host_files(self):
+        if self.dev_env is not None:
+            self.host_files.update('127.0.0.1', self.host)
 
+    def update_permissions(self):
 
+        if self.dev_env is not None and self.operating_system is not 'Windows':
+            user = os.getlogin()
+        elif self.operating_system is not 'Windows':
+            import getpass
+            getpass.getuser()
+            user = getpass
 
-
+        change_directory_owner_recursively(self.doc_path, user)

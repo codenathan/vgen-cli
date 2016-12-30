@@ -30,7 +30,7 @@ def update(ipaddress, hostname):
     :param ipaddress:
     :param hostname:
     """
-    if 'linux' in sys.platform:
+    if 'linux' or 'darwin' in sys.platform:
         filename = '/etc/hosts'
     else:
         filename = 'c:\windows\system32\drivers\etc\hosts'
