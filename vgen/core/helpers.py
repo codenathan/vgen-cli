@@ -9,6 +9,7 @@ def slugify(string):
     return slug
 
 
-def mkdir(path):
-    if not os.path.exists(path):
-        os.makedirs(path)
+def mkdir(*paths):
+    for path in paths:
+            if not os.path.exists(path):
+                os.makedirs(path)

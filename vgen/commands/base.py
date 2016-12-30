@@ -1,4 +1,4 @@
-from vgen.core import *
+from vgen.core import Configuration
 
 
 class Base(object):

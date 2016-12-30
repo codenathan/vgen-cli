@@ -49,4 +49,5 @@ Examples:
 Credits
 -------
 
-Base on Randall Degges(@rdegges) skele-cli https://github.com/rdegges/skele-cli
+CLI functionality based on Randall Degges(@rdegges) skele-cli https://github.com/rdegges/skele-cli
+Host File Functionality by Jason Vanzin(@jasonvanzin) https://github.com/jasonvanzin/hostfileupdate
