@@ -4,4 +4,4 @@ from .expection import *
 from .helpers import *
 from .template import Template
 from .server_commands import ServerCommands
-from .framework_commands import FrameworkCommands
+from .package_commands import PackageCommands

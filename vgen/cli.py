@@ -2,7 +2,7 @@
 vgen
 
 Usage:
-  vgen create HOST [-p=<package>] [-u=<username>] [-d]
+  vgen create HOST [--pkg=<package>]
   vgen archive HOST
   vgen -h | --help
   vgen --version
@@ -13,9 +13,7 @@ Arguments:
 Options:
   -h --help                        Show this screen.
   --version                        Show version.
-  -p                               Optional - framework/application to install i.e wordpress/laravel/codeigniter
-  -u                               Optional - Use different username
-  -d                               Optional - Create Database
+  --pkg=<package>                  Optional - framework/application to install i.e wordpress/laravel/codeigniter
 
 Examples:
   vgen create stage.vgen.com

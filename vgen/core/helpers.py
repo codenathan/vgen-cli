@@ -46,11 +46,3 @@ def change_directory_owner_recursively(path, owner):
             os.chown(itempath, uid, gid)
             change_directory_owner_recursively(itempath, owner)
 
-
-def php_is_enabled():
-    import subprocess as sp
-    try:
-        sp.check_call(['php', '-v'])
-        return True
-    except:
-        return False

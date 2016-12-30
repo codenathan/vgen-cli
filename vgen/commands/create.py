@@ -1,6 +1,7 @@
 from .base import Base
 from vgen.templates import mapping as template_mapping
 from vgen.core.helpers import *
+from vgen.scripts import packages
 from os import path
 
 
@@ -72,5 +73,17 @@ class Create(Base):
         change_directory_owner_recursively(self.doc_path, user)
 
     def check_if_package(self):
-        print self.options
+        package = self.options['--pkg']
+
+        if package is not None:
+            if package in self.defaults.PACKAGES:
+                self.package = package
+                self.setup_package()
+            else:
+                raise AttributeError('The package %r is not available' % package)
+
+    def setup_package(self):
+
+        package = getattr(packages, self.package.title())
+        print package
         exit()
