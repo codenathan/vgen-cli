@@ -11,7 +11,6 @@ class Create(Base):
 
             self.check_hostname()
             self.filename = None
-
             self.host = self.options['HOST']
             self.slug = slugify(self.host)
             self.web_server = self.config.get('WEB_SERVER')
@@ -25,14 +24,20 @@ class Create(Base):
             self.check_if_package()
 
     def run(self):
+
         make_directories(self.doc_path, self.public_path)
         template_string = self.template.render_template()
 
         self.filename = self.create_config_file(template_string)
         print 'Created Vhost file for  %s : %r' % (self.host, self.filename)
-        self.server.restart_server()
+
+        self.run_as_root()  # we now need permission to update permissions
         self.update_host_files()
-        self.update_permissions()
+        self.update_folder_permissions()
+
+        self.server.restart_server()
+
+        print 'VGen Finished'
 
     def create_config_file(self, data):
         path_enabled = self.config.get('PATH_ENABLED')
@@ -59,14 +64,12 @@ class Create(Base):
                 ip = config_ip
         self.host_files.update(ip, self.host)
 
-    def update_permissions(self):
+    def update_folder_permissions(self):
 
         if self.dev_env is not None and self.operating_system is not 'Windows':
-            user = os.getlogin()
+            user = self.user
         elif self.operating_system is not 'Windows':
-            import getpass
-            getpass.getuser()
-            user = getpass
+            user = self.root
         else:
             return False
 
@@ -83,7 +86,5 @@ class Create(Base):
                 raise AttributeError('The package %r is not available' % package)
 
     def setup_package(self):
-
-        package = getattr(packages, self.package.title())
-        print package
-        exit()
+        package = getattr(packages, self.package.title())()
+        package.install_package(self.config.get('DOCUMENT_ROOT'), self.slug)

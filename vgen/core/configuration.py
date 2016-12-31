@@ -48,6 +48,10 @@ class Configuration(object):
             if attr in validator.REQUIRED and current_attr_value is None:
                 raise ImproperlyConfigured('You need to specify a value for: %s' % attr)
             return True
+        elif attr in validator.BOOLEAN:
+            if current_attr_value is not isinstance(current_attr_value, bool):
+                raise ImproperlyConfigured('You must specify a boolean value for %' % attr)
+            return True
         else:
             raise FieldDoesNotExist('%r is not a valid in config' % attr)
 

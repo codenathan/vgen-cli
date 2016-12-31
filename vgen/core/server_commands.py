@@ -1,15 +1,7 @@
-import os
+from .terminal_commands import TerminalCommands
 
 
-class ServerCommands(object):
-
-    @staticmethod
-    def run_command(command):
-        os.system(command)
-
-    @staticmethod
-    def change_directory(path):
-        os.chdir(path)
+class ServerCommands(TerminalCommands):
 
     def start_server(self):
         raise NotImplementedError('You must specify the command to start the web server')

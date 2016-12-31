@@ -17,15 +17,25 @@ def composer_is_setup():
     return check_if_package_is_setup('composer', '--version')
 
 
-def check_package(package):
-    if hasattr(mapping, package):
+def laravel_is_setup():
+    return check_if_package_is_setup('laravel', '--version')
 
-        return getattr(mapping, package)()
-    else:
-        return False
+
+def check_packages(packages):
+    installed = {}
+
+    for package in packages:
+        answer = False
+        if package in mapping:
+            answer = mapping[package]()
+
+        installed[package] = answer
+
+    return installed
 
 
 mapping = {
     'composer': composer_is_setup,
-    'php': php_is_setup
+    'php': php_is_setup,
+    'laravel': laravel_is_setup
 }

@@ -7,6 +7,7 @@ WEB_SERVER = 'apache'  # apache | ngnix
 WEB_SERVER_VERSION = 2.2  # 2.2 | 2.4
 PORT = 80
 IP_ADDRESS = '*'
+CHECK_PREREQUISITES = True
 
 # Optional Configurations
 
