@@ -5,7 +5,7 @@ def check_if_package_is_setup(package, version_command='-v'):
     try:
         sp.check_call([package, version_command])
         return True
-    except:
+    except :
         return False
 
 

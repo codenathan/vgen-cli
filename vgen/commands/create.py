@@ -1,8 +1,9 @@
-from .base import Base
-from vgen.templates import mapping as template_mapping
-from vgen.core.helpers import *
-from vgen.scripts import packages
 from os import path
+
+from vgen.core.helpers.helpers_general import *
+from vgen.scripts import packages
+from vgen.templates import mapping as template_mapping
+from .base import Base
 
 
 class Create(Base):
@@ -62,7 +63,7 @@ class Create(Base):
             config_ip = self.config.get('IP_ADDRESS')
             if config_ip is not '*':
                 ip = config_ip
-                self.host_files.update(ip, self.host)
+            self.host_files.update(ip, self.host)
 
     def update_folder_permissions(self):
 

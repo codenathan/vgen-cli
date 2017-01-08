@@ -1,15 +1,14 @@
-from vgen.core import Configuration
-from vgen.core import defaults
-from vgen.core.expection import *
-from vgen.core.helpers import *
-from vgen.services import hostfileupdate
-from os import getlogin
-from getpass import getuser
-from platform import system
-import subprocess
-
-
 import importlib
+import subprocess
+from getpass import getuser
+from os import getlogin
+from platform import system
+
+from vgen.core.config import defaults
+from vgen.core.helpers.helpers_general import *
+from vgen.core import Configuration
+from vgen.core.expection import *
+from vgen.services import hostfileupdate
 
 
 class Base(object):

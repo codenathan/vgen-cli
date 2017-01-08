@@ -1,5 +1,6 @@
 import os
 
+
 class TerminalCommands(object):
     @staticmethod
     def run_command(command):

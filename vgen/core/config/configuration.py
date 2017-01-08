@@ -1,6 +1,6 @@
 import vgen.config as config   # import default config file
 import conf_validator as validator
-from expection import ImproperlyConfigured, FieldDoesNotExist
+from vgen.core.expection import ImproperlyConfigured, FieldDoesNotExist
 
 
 class Configuration(object):

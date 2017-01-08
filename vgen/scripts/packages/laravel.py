@@ -1,4 +1,4 @@
-from vgen.core.package_commands import PackageCommands
+from vgen.core.command.package_commands import PackageCommands
 
 
 class Laravel(PackageCommands):

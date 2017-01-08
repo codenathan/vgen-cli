@@ -1,5 +1,5 @@
 import unicodedata, re
-import os,ctypes,platform
+import os, ctypes, platform
 from vgen.services import hostfileupdate
 from pwd import getpwnam
 

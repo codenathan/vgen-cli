@@ -1,4 +1,4 @@
-import defaults
+from vgen.core.config import defaults
 
 # current validation only on lists(tuples) and path
 

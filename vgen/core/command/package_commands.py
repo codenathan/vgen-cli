@@ -1,7 +1,7 @@
-from .terminal_commands import TerminalCommands
-from vgen.core.helpers_package import *
-from vgen.core.expection import *
+from vgen.core.helpers.helpers_package import *
 from vgen.config import CHECK_PREREQUISITES
+from vgen.core.expection import *
+from .terminal_commands import TerminalCommands
 
 
 class PackageCommands(TerminalCommands):
