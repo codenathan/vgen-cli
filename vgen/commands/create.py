@@ -62,7 +62,7 @@ class Create(Base):
             config_ip = self.config.get('IP_ADDRESS')
             if config_ip is not '*':
                 ip = config_ip
-        self.host_files.update(ip, self.host)
+                self.host_files.update(ip, self.host)
 
     def update_folder_permissions(self):
 
@@ -88,3 +88,11 @@ class Create(Base):
     def setup_package(self):
         package = getattr(packages, self.package.title())()
         package.install_package(self.config.get('DOCUMENT_ROOT'), self.slug)
+
+        # check if public folder needs to be reset
+        public = package.return_public_folder()
+
+        if public is isinstance(public, str):
+            self.public_path = path.join(self.doc_path,public)
+        elif public is False:
+            self.public_path = self.doc_path
